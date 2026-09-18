@@ -88,23 +88,29 @@ nav ul {
     flex-direction: column;
     gap: 8px;
 }
- 
-nav ul li a {
-    display: block;
+
+nav ul li summary {
     padding: 12px 24px;
     border-radius: 999px;
     font-weight: 900;
     text-transform: uppercase;
-    text-decoration: none;
     color: var(--lcars-black);
-    transition: filter 0.15s ease;
-}
- 
-nav ul li a:hover {
-    filter: brightness(1.2);
-    text-shadow: none;
+    list-style: none; /* removes the default triangle icon */
 }
 
+nav ul li summary:hover {
+    filter: brightness(1.2);
+}
+
+nav ul li details p {
+    background: var(--lcars-black);
+    color: var(--lcars-peach);
+    margin: 4px 0 0;
+    padding: 10px 16px;
+    border-radius: 0 0 16px 16px;
+}
+
+ 
 .uniform {
     margin: 8px 12px;
     padding: 10px 18px;
