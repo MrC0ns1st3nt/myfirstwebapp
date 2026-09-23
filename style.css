@@ -22,11 +22,13 @@ body {
 
 header {
     display: flex;
+    flex-direction: column;
     align-items: center;
     background: var(--lcars-peach);
     border-radius: 0 60px 60px 0;
     padding: 18px 40px 18px 24px;
     margin-bottom: 12px;
+    gap: 8px;
 }
 
 .header-content h1 {
@@ -122,17 +124,17 @@ nav ul li details p {
 
 .command {
     background-color: var(--lcars-alert);
-    color: #1a0000;
+    color: var(--lcars-black);
 }
  
 .operations {
     background-color: var(--lcars-orange);
-    color: #1a0000;
+    color: var(--lcars-black);
 }
  
 .science {
     background-color: var(--lcars-blue);
-    color: #1a0000;
+    color: var(--lcars-black);
 }
 
 /*----------- Footer -----------*/
@@ -152,4 +154,72 @@ footer {
     color: var(--lcars-black);
     text-transform: uppercase;
     font-size: 1rem;
+}
+
+/*----------- Form Styles -----------*/
+
+.mission-form {
+    background: var(--lcars-black);
+    padding: 20px;
+    border: 3px solid var(--lcars-peach);
+    border-radius: 12px;
+}
+
+.mission-form h2 {
+    margin: 12px 0;
+    color: var(--lcars-peach);
+    text-align: left;
+}
+
+.mission-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mission-form label {
+    color: var(--lcars-peach);
+    font-weight: 600;
+}
+
+.mission-form input,
+.mission-form select,
+.mission-form textarea,
+.mission-form button {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.75rem;
+    border: 1px solid var(--lcars-peach);
+    border-radius: 6px;
+    background-color: var(--lcars-black);
+    color: var(--lcars-peach);   
+    font: inherit;
+}
+
+.mission-form input:focus-visible,
+.mission-form select:focus-visible,
+.mission-form textarea:focus-visible {
+    outline: 2px solid var(--lcars-blue);
+    outline-offset: 2px;
+    background-color: var(--lcars-black);
+    color: var(--lcars-peach);
+}
+
+.mission-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.mission-form button {
+    background: var(--lcars-orange);
+    color: var(--lcars-black);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+}
+
+.mission-form button:hover {
+    filter: brightness(1.12);
 }

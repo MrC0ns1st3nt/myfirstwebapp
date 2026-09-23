@@ -8,7 +8,6 @@
     <body>
         <header class="header-content">
             <h1>Fluffy TNG appreciation page</h1>
-            <br>
             <p>This is a simple HTML page dedicated to the brave crew of the USS Enterprise-D.</p>
         </header>
         <div class="container">
@@ -64,6 +63,38 @@
                 <img src="TNG.webp" alt="The crew of the USS Enterprise-D" width="400" height="400">
             </div>
         </div>
+        <section class="mission-form">
+                    <h2>Submit a Mission Review</h2>
+
+                    <form action="#" method="post">
+                        <label for="name">Officer name:</label>
+                        <input type="text" id="name" name="name" required>
+
+                        <label for="department">Department:</label>
+                        <select id="department" name="department" required>
+                            <option value="">Select a department</option>
+                            <option value="command">Command</option>
+                            <option value="operations">Operations</option>
+                            <option value="science-medical">Science and Medical</option>
+                        </select>
+
+                        <label for="crew-member">Favourite crew member:</label>
+                        <select id="crew-member" name="crew-member">
+                            <option>Picard</option>
+                            <option>Riker</option>
+                            <option>Data</option>
+                            <option>Worf</option>
+                            <option>La Forge</option>
+                            <option>Troi</option>
+                        </select>
+
+                        <label for="review">Mission review:</label>
+                        <textarea id="review" name="review" rows="5"
+                                placeholder="Enter your review..."></textarea>
+
+                        <button type="submit">Transmit Review</button>
+                    </form>
+                </section>
         <footer class="footer-content">
             <h2>ST:TNG reference</h2>
             <a href="https://en.wikipedia.org/wiki/Star_Trek:_The_Next_Generation">Read more about Star Trek: The Next Generation on Wikipedia</a>
