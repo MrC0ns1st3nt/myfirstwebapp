@@ -10,11 +10,9 @@ form.addEventListener('submit', (e) => {
   statusDetail.innerHTML = `TO: STARFLEET COMMAND`;
 
   missionPanel.classList.add('is-locked');
-  form.disabled = true;
 });
 
 resetBtn.addEventListener('click', () => {
   form.reset();
-  form.disabled = false;
   missionPanel.classList.remove('is-locked');
 });
