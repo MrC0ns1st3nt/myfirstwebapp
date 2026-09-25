@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
     <head> 
         <meta charset="UTF-8">
@@ -10,7 +11,36 @@
             <h1>Fluffy TNG appreciation page</h1>
             <p>This is a simple HTML page dedicated to the brave crew of the USS Enterprise-D.</p>
         </header>
+        <div class="top">
+            <button type="button" class="console-btn btn-eng">Engineering</button>
+            <button type="button" class="console-btn btn-science">Science</button>
+            <button type="button" class="console-btn btn-ops">Operations</button>
+        </div>
+        
         <div class="container">
+            <div class="main">
+                <img src="TNG.webp" alt="The crew of the USS Enterprise-D" width="400" height="400">
+            </div>
+            <div class="icon-grid" aria-hidden="true">
+                <span class="icon-cell-block" style="--c: var(--lcars-orange);"></span>
+                <span class="icon-cell" data-label="AL CON" style="--c: var(--lcars-orange);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-blue);"></span>
+                <span class="icon-cell" data-label="SU RIK" style="--c: var(--lcars-blue);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-peach);"></span>
+                <span class="icon-cell" data-label="LI ENG"style="--c: var(--lcars-peach);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-lavender);"></span>
+                <span class="icon-cell" data-label="DA TIL" style="--c: var(--lcars-lavender);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-orange);"></span>
+                <span class="icon-cell" data-label="CO BOL" style="--c: var(--lcars-orange);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-blue);"></span>
+                <span class="icon-cell" data-label="GE ORG" style="--c: var(--lcars-blue);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-peach);"></span>
+                <span class="icon-cell" data-label="EN KEL" style="--c: var(--lcars-peach);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-alert);"></span>
+                <span class="icon-cell" data-label="MA LUS" style="--c: var(--lcars-alert);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-blue);"></span>
+                <span class="icon-cell" data-label="EM NEG" style="--c: var(--lcars-blue);"></span>
+            </div>
             <div class="side">
                 <h2>Crew Members</h2>
                 <nav>
@@ -53,51 +83,105 @@
                         </li>
                     </ul>
                 </nav>
-                <h2>Coloured uniform</h2>
+                <!-- <h2>System Readout</h2> -->
+                <div class="readout" aria-hidden="true">
+                    <div class="readout-row">
+                        <span class="readout-label">26-3A 13</span>
+                        <div class="readout-bar">
+                            <div class="readout-fill">
+                                <span class="seg" style="--c: var(--lcars-peach); flex-grow: 3;"></span>
+                                <span class="seg" style="--c: var(--lcars-orange); flex-grow: 2;"></span>
+                                <span class="seg" style="--c: var(--lcars-blue); flex-grow: 4;"></span>
+                            </div>
+                        </div>
+                        <span class="led-dot"></span>
+                    </div>
+                    <div class="readout-row">
+                        <span class="readout-label">26-3A 25</span>
+                        <div class="readout-bar">
+                            <div class="readout-fill">
+                                <span class="seg" style="--c: var(--lcars-orange); flex-grow: 5;"></span>
+                                <span class="seg" style="--c: var(--lcars-lavender); flex-grow: 2;"></span>
+                            </div>
+                        </div>
+                        <span class="led-dot"></span>
+                    </div>
+                    <div class="readout-row">
+                        <span class="readout-label">26-3B 74</span>
+                        <div class="readout-bar">
+                            <div class="readout-fill">
+                                <span class="seg" style="--c: var(--lcars-blue); flex-grow: 2;"></span>
+                                <span class="seg" style="--c: var(--lcars-peach); flex-grow: 6;"></span>
+                            </div>
+                        </div>
+                        <span class="led-dot"></span>
+                    </div>
+                    <div class="readout-row">
+                        <span class="readout-label">26-3B 17</span>
+                        <div class="readout-bar">
+                            <div class="readout-fill">
+                                <span class="seg" style="--c: var(--lcars-blue); flex-grow: 2;"></span>
+                                <span class="seg" style="--c: var(--lcars-peach); flex-grow: 6;"></span>
+                                <span class="seg" style="--c: var(--lcars-lavender); flex-grow: 4;"></span>
+                            </div>
+                        </div>
+                        <span class="led-dot"></span>
+                    </div>
+                </div>
+            </div>     
+        </div>
+        <h2>Coloured uniform</h2>
                 The crew members of the USS Enterprise-D wear different coloured uniforms based on their roles:<br>
                 <p class="uniform command">Command division (Captain, First Officer)</p>
                 <p class="uniform operations">Operations division (Engineering, Security)</p>
                 <p class="uniform science">Science and Medical division</p>
-            </div>
-            <div class="main">
-                <img src="TNG.webp" alt="The crew of the USS Enterprise-D" width="400" height="400">
-            </div>
-        </div>
-        <section class="mission-form">
-                    <h2>Submit a Mission Review</h2>
+        <section class="mission-form" id="mission-panel">
+    <div class="form-layer">
+        <h2>Submit a Mission Review</h2>
 
-                    <form action="#" method="post">
-                        <label for="name">Officer name:</label>
-                        <input type="text" id="name" name="name" required>
+        <form action="#" method="post" id="mission-form">
+            <label for="name">Officer name:</label>
+            <input type="text" id="name" name="name" required>
 
-                        <label for="department">Department:</label>
-                        <select id="department" name="department" required>
-                            <option value="">Select a department</option>
-                            <option value="command">Command</option>
-                            <option value="operations">Operations</option>
-                            <option value="science-medical">Science and Medical</option>
-                        </select>
+            <label for="department">Department:</label>
+            <select id="department" name="department" required>
+                <option value="">Select a department</option>
+                <option value="command">Command</option>
+                <option value="operations">Operations</option>
+                <option value="science-medical">Science and Medical</option>
+            </select>
 
-                        <label for="crew-member">Assigned Crew Member:</label>
-                        <select id="crew-member" name="crew-member">
-                            <option>Picard</option>
-                            <option>Riker</option>
-                            <option>Data</option>
-                            <option>Worf</option>
-                            <option>La Forge</option>
-                            <option>Troi</option>
-                        </select>
+            <label for="crew-member">Favourite crew member:</label>
+            <select id="crew-member" name="crew-member">
+                <option>Picard</option>
+                <option>Riker</option>
+                <option>Data</option>
+                <option>Worf</option>
+                <option>La Forge</option>
+                <option>Troi</option>
+            </select>
 
-                        <label for="review">Mission review:</label>
-                        <textarea id="review" name="review" rows="5"
-                                placeholder="Enter your review..."></textarea>
+            <label for="review">Mission review:</label>
+            <textarea id="review" name="review" rows="5" placeholder="Enter your review..."></textarea>
 
-                        <button type="submit">Transmit Review</button>
-                    </form>
-                </section>
+            <button type="submit">Transmit Review</button>
+        </form>
+    </div>
+
+    <div class="transmission-status" id="transmission-status" aria-live="polite" hidden>
+    <div class="ufp-badge" aria-hidden="true">
+        <img src="UFP.jpg" alt="United Federation of Planets logo">
+    </div>
+
+    <p class="status-line">OUTGOING TRANSMISSION</p>
+    <p class="status-detail" id="status-detail"></p>
+    <button type="button" id="status-reset">Close</button>
+</div>
+</section>
         <footer class="footer-content">
             <h2>ST:TNG reference</h2>
             <a href="https://en.wikipedia.org/wiki/Star_Trek:_The_Next_Generation">Read more about Star Trek: The Next Generation on Wikipedia</a>
-        </footer>        
-    </body>
+        </footer> 
+    <script src="script.js"></script>       
+    </body> 
 </html>
