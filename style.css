@@ -76,6 +76,7 @@ header {
     filter: brightness(1.2);
 }
 
+/* Button and barStyles */
 .btn-eng {
     background: var(--lcars-orange);
 }
@@ -85,6 +86,24 @@ header {
 .btn-ops {
     background: var(--lcars-peach);
 }
+
+.bar-orange {
+    background: var(--lcars-orange);
+}
+.bar-peach {
+    background: var(--lcars-peach);
+}
+.bar-lavender {
+    background: var(--lcars-lavender);
+}
+.bar-blue {
+    background: var(--lcars-blue);
+}
+.bar-red {
+    background: var(--lcars-alert);
+}
+
+/* ============================================= */
 
 .side {
     flex: 0 1 260px;
@@ -153,19 +172,6 @@ header {
 .icon-grid .icon-cell-block:nth-child(13) { animation-delay: 1.0s; animation-duration: 3.4s; }
 .icon-grid .icon-cell-block:nth-child(15) { animation-delay: 2.5s; animation-duration: 2.7s; }
 .icon-grid .icon-cell-block:nth-child(17) { animation-delay: 1.2s; animation-duration: 3.1s; }
-
-.bar-orange {
-    background: var(--lcars-orange);
-}
-.bar-peach {
-    background: var(--lcars-peach);
-}
-.bar-lavender {
-    background: var(--lcars-lavender);
-}
-.bar-blue {
-    background: var(--lcars-blue);
-}
 
 @media screen and (max-width: 700px) {
     .container {
@@ -475,7 +481,7 @@ footer {
 .ufp-badge {
     width: 100%;
     height: auto;
-    place-items: center;
+    place-items: center; 
     position: relative;
     background: var(--lcars-black);
 }
@@ -494,12 +500,8 @@ footer {
 .status-detail {
     margin: 0 0 16px;
     color: var(--lcars-blue);
-    line-height: 1.6;
+    line-height: 1.4;
     font-size: 2rem;
-}
-
-.status-detail strong {
-    color: var(--lcars-blue);
 }
 
 #status-reset {
