@@ -438,6 +438,27 @@ nav ul li details p {
     font-size: clamp(1rem, 3vw, 1.3rem);
 }
 
+.pips {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pip {
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--lcars-black);
+    border-radius: 50px;
+}
+
+.pip.active {
+    background: var(--lcars-black);
+}
+
 @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
         .division-content {

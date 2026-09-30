@@ -13,7 +13,7 @@ function transmissionMessage() {
 }
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  
+
   statusDetail.innerHTML = transmissionMessage();
   missionPanel.classList.add('is-locked');
 });
@@ -36,3 +36,18 @@ consoleButtons.forEach(function (btn) {
     setActiveConsole(btn);
   }); 
 });
+
+// Adding a function to help manage the scroll pips in the Ship Division section
+
+const scroller = document.querySelector('.division-scroller');
+const pips = document.querySelectorAll('.pip');
+
+function setPip() {
+  scroller.addEventListener('scroll', function() {
+    const index = Math.round(scroller.scrollTop / scroller.clientHeight);
+    pips.forEach(function (pip, i) {
+      pip.classList.toggle('active', i === index);
+  });
+});
+}
+setPip();
