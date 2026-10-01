@@ -166,9 +166,24 @@
                 <span class="pip"></span>
             </div>
         </div>
+        
+        <!-- Season List accessing public API called STAPI. https://stapi.co/api-overview -->
+        <h2>Season Episode Log</h2>
+        <select id="season-select" class="log-select">
+            <option value="SAMA0000001633">Season 1</option>
+            <option value="SAMA0000001634">Season 2</option>
+            <option value="SAMA0000001635">Season 3</option>
+            <option value="SAMA0000001636">Season 4</option>
+            <option value="SAMA0000001637">Season 5</option>
+            <option value="SAMA0000001638">Season 6</option>
+            <option value="SAMA0000001639">Season 7</option>
+        </select>
+        <ul id="episode-list" class="episode-list" aria-live="polite">
+            <li>loading transmissions...</li>
+        </ul>
 
         <section class="mission-form" id="mission-panel">
-    <div class="form-layer">
+        <div class="form-layer">
         <h2>Submit a Mission Review</h2>
 
         <form action="#" method="post" id="mission-form">

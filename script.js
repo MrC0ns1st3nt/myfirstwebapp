@@ -51,3 +51,36 @@ function setPip() {
 });
 }
 setPip();
+
+// Grabbing the episodeList 
+
+const episodeList = document.getElementById('episode-list');
+const seasonSelect = document.getElementById('season-select');
+
+function loadEpisodes(seasonUid) {
+  fetch("https://stapi.co/api/v1/rest/season?uid=" + seasonUid)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      var episodes = data.season.episodes;
+      episodes.sort(function (a,b) {
+        return a.episodeNumber - b.episodeNumber;
+      });
+
+      episodeList.innerHTML = "";
+      for (var i = 0; i < episodes.length; i++) {
+        var li = document.createElement("li");
+        var text = document.createTextNode(
+          episodes[i].episodeNumber + ". " + episodes[i].title + " (" + episodes[i].usAirDate + ")"
+        );
+        li.appendChild(text);
+        episodeList.appendChild(li);
+      }
+    })
+}
+
+seasonSelect.addEventListener("change", function() {
+  loadEpisodes(seasonSelect.value);
+});
+loadEpisodes(seasonSelect.value);
