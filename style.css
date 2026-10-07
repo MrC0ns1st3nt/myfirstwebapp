@@ -118,6 +118,14 @@ header {
     align-items: flex-start;
 }
 
+.rside {
+    flex: 1 1 200px;   
+}
+
+.rside img {
+    width: 100%;       
+}
+
 /*----------- System Readout -----------*/
 
 .icon-grid {
