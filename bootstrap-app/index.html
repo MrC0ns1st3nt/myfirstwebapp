@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Fluffy TNG - Bootstrap Edition</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    
+    <header class="d-flex flex-column align-items-center gap-2 p-3 p-md-4 mb-3">
+        <h1 class="mb-0">Fluffy TNG appreciation page - Bootstrap Edition</h1>
+        <p class="mb-0">This is a simple HTML page dedicated to the brave crew of the USS Enterprise-D.</p>
+    </header>
+
+<div class="container-fluid">
+    <div class="d-flex flex-wrap gap-2 mb-4">
+        <button type="button" class="console-btn btn-eng">Engineering</button>
+        <button type="button" class="console-btn btn-science">Science</button>
+        <button type="button" class="console-btn btn-ops">Operations</button>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-6 col-lg-3">
+            <img src="images/TNG.webp" alt="The crew of the USS Enterprise-D">
+        </div>
+        <div class="col-12 col-sm-6 col-lg-2">
+            <div class="icon-grid py-3" aria-hidden="true">
+                <span class="icon-cell-block" style="--c: var(--lcars-orange);"></span>
+                <span class="icon-cell" data-label="AL CON" style="--c: var(--lcars-orange);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-blue);"></span>
+                <span class="icon-cell" data-label="SU RIK" style="--c: var(--lcars-blue);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-peach);"></span>
+                <span class="icon-cell" data-label="LI ENG" style="--c: var(--lcars-peach);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-lavender);"></span>
+                <span class="icon-cell" data-label="DA TIL" style="--c: var(--lcars-lavender);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-orange);"></span>
+                <span class="icon-cell" data-label="CO BOL" style="--c: var(--lcars-orange);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-blue);"></span>
+                <span class="icon-cell" data-label="GE ORG" style="--c: var(--lcars-blue);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-peach);"></span>
+                <span class="icon-cell" data-label="EN KEL" style="--c: var(--lcars-peach);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-alert);"></span>
+                <span class="icon-cell" data-label="MA LUS" style="--c: var(--lcars-alert);"></span>
+                <span class="icon-cell-block" style="--c: var(--lcars-blue);"></span>
+                <span class="icon-cell" data-label="EM NEG" style="--c: var(--lcars-blue);"></span>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+            <h2>Crew Members</h2>
+            <div class="accordion" id="crewAccordion">
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bar-red" type="button" data-bs-toggle="collapse" data-bs-target="#picard" aria-expanded="false" aria-controls="picard">Picard</button>
+                    </h2>
+                    <div id="picard" class="accordion-collapse collapse" data-bs-parent="#crewAccordion">
+                        <div class="accordion-body">Captain Jean-Luc Picard is the thoughtful and diplomatic commander of the USS Enterprise-D.</div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bar-red" type="button" data-bs-toggle="collapse" data-bs-target="#riker" aria-expanded="false" aria-controls="riker">Riker</button>
+                    </h2>
+                    <div id="riker" class="accordion-collapse collapse" data-bs-parent="#crewAccordion">
+                        <div class="accordion-body">Commander William Riker is Picard's trusted First Officer and an experienced starship officer.</div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#data" aria-expanded="false" aria-controls="data">Data</button>
+                    </h2>
+                    <div id="data" class="accordion-collapse collapse" data-bs-parent="#crewAccordion">
+                        <div class="accordion-body">Lieutenant Commander Data is an android science officer who seeks to understand humanity.</div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#worf" aria-expanded="false" aria-controls="worf">Worf</button>
+                    </h2>
+                    <div id="worf" class="accordion-collapse collapse" data-bs-parent="#crewAccordion">
+                        <div class="accordion-body">Lieutenant Worf is the Enterprise-D's Klingon security chief and tactical officer.</div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bar-blue" type="button" data-bs-toggle="collapse" data-bs-target="#crusher" aria-expanded="false" aria-controls="crusher">Crusher</button>
+                    </h2>
+                    <div id="crusher" class="accordion-collapse collapse" data-bs-parent="#crewAccordion">
+                        <div class="accordion-body">Dr Beverly Crusher is the ship's chief medical officer.</div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#laforge" aria-expanded="false" aria-controls="laforge">La Forge</button>
+                    </h2>
+                    <div id="laforge" class="accordion-collapse collapse" data-bs-parent="#crewAccordion">
+                        <div class="accordion-body">Lieutenant Commander Geordi La Forge is the ship's chief engineer.</div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bar-blue" type="button" data-bs-toggle="collapse" data-bs-target="#troi" aria-expanded="false" aria-controls="troi">Troi</button>
+                    </h2>
+                    <div id="troi" class="accordion-collapse collapse" data-bs-parent="#crewAccordion">
+                        <div class="accordion-body">Commander Deanna Troi is the ship's empathic counsellor.</div>
+                    </div>
+                </div>
+            </div>
+        <div class="readout d-flex flex-column gap-2 p-3 mb-3" aria-hidden="true">
+            <div class="readout-row d-flex align-items-center gap-2">
+                <span class="readout-label flex-shrink-0">26-3A 13</span>
+                <div class="readout-bar d-flex flex-grow-1">
+                    <div class="readout-fill d-flex h-100">
+                        <span class="seg" style="--c: var(--lcars-peach); flex-grow: 3;"></span>
+                        <span class="seg" style="--c: var(--lcars-orange); flex-grow: 2;"></span>
+                        <span class="seg" style="--c: var(--lcars-blue); flex-grow: 4;"></span>
+                    </div>
+                </div>
+                <span class="led-dot flex-shrink-0"></span>
+            </div>
+            <div class="readout-row d-flex align-items-center gap-2">
+                <span class="readout-label flex-shrink-0">26-3A 25</span>
+                <div class="readout-bar d-flex flex-grow-1">
+                    <div class="readout-fill d-flex h-100">
+                        <span class="seg" style="--c: var(--lcars-orange); flex-grow: 5;"></span>
+                        <span class="seg" style="--c: var(--lcars-lavender); flex-grow: 2;"></span>
+                    </div>
+                </div>
+                <span class="led-dot flex-shrink-0"></span>
+            </div>
+            <div class="readout-row d-flex align-items-center gap-2">
+                <span class="readout-label flex-shrink-0">26-3B 74</span>
+                <div class="readout-bar d-flex flex-grow-1">
+                    <div class="readout-fill d-flex h-100">
+                        <span class="seg" style="--c: var(--lcars-blue); flex-grow: 2;"></span>
+                        <span class="seg" style="--c: var(--lcars-peach); flex-grow: 6;"></span>
+                    </div>
+                </div>
+                <span class="led-dot flex-shrink-0"></span>
+            </div>
+            <div class="readout-row d-flex align-items-center gap-2">
+                <span class="readout-label flex-shrink-0">26-3B 17</span>
+                <div class="readout-bar d-flex flex-grow-1">
+                    <div class="readout-fill d-flex h-100">
+                        <span class="seg" style="--c: var(--lcars-blue); flex-grow: 2;"></span>
+                        <span class="seg" style="--c: var(--lcars-peach); flex-grow: 6;"></span>
+                        <span class="seg" style="--c: var(--lcars-alert); flex-grow: 4;"></span>
+                    </div>
+                </div>
+                <span class="led-dot flex-shrink-0"></span>
+            </div>
+        </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-4">
+            <img src="images/enterprise-d.jpg" alt="An image of the USS Enterprise-D">
+        </div>
+    </div>
+    <section>
+        <h2>Ship Division</h2>
+        <p>The crew members of the USS Enterprise-D are divided into three main divisions based on their roles:</p>
+        <div id="shipdivision" class="carousel slide my-3" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#shipdivision" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Show Command Division"></button>
+                <button type="button" data-bs-target="#shipdivision" data-bs-slide-to="1" aria-label="Show Operations Division"></button>
+                <button type="button" data-bs-target="#shipdivision" data-bs-slide-to="2" aria-label="Show Science and Medical Division"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item section-command active">
+                    <div class="division-content d-grid align-content-center gap-3 px-4 text-center h-100">
+                        <h3 class="mb-0">Command Division</h3>
+                        <p class="mx-auto">The command division is responsible for the overall leadership and strategic decision-making of the ship.</p>
+                    </div>
+                </div>
+                <div class="carousel-item section-operations">
+                    <div class="division-content d-grid align-content-center gap-3 px-4 text-center h-100">
+                        <h3 class="mb-0">Operations Division</h3>
+                        <p class="mx-auto">The operations division handles the technical and administrative aspects of the ship's operation.</p>
+                    </div>
+                </div>
+                <div class="carousel-item section-science">
+                    <div class="division-content d-grid align-content-center gap-3 px-4 text-center h-100">
+                        <h3 class="mb-0">Science and Medical Division</h3>
+                        <p class="mx-auto">The science and medical division is responsible for scientific research and medical care aboard the ship.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h2>Season Episode Log</h2>
+        <div class="mx-auto">
+            <label for="season-select" class="form-label">Choose a season:</label>
+            <select class="form-select" id="season-select">
+                <option value="SAMA0000001633">Season 1</option>
+                <option value="SAMA0000001634">Season 2</option>
+                <option value="SAMA0000001635">Season 3</option>
+                <option value="SAMA0000001636">Season 4</option>
+                <option value="SAMA0000001637">Season 5</option>
+                <option value="SAMA0000001638">Season 6</option>
+                <option value="SAMA0000001639">Season 7</option>
+            </select>
+        </div>
+        <div id="episode-error" class="alert alert-danger mt-3" role="alert" hidden>Could not load episodes. Please try again later.</div>
+        <ul id="episode-list" class="list-unstyled row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2 mt-3" aria-live="polite">
+            <li>Loading transmissions...</li>
+        </ul>
+    </section>
+    <section>
+        <div class="mx-auto">
+            <h2>Submit a Mission Review</h2>
+            <form action="#" method="post" id="mission-form" novalidate>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Officer name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="department" class="form-label">Department:</label>
+                    <select class="form-select" id="department" name="department" required>
+                        <option value="">Select a department</option>
+                        <option value="command">Command</option>
+                        <option value="operations">Operations</option>
+                        <option value="science-medical">Science and Medical</option>
+                    </select>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="crew-member" class="form-label">Favourite crew member:</label>
+                    <select class="form-select" id="crew-member" name="crew-member">
+                        <option>Picard</option>
+                        <option>Riker</option>
+                        <option>Data</option>
+                        <option>Worf</option>
+                        <option>Crusher</option>
+                        <option>La Forge</option>
+                        <option>Troi</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="review" class="form-label">Mission review:</label>
+                    <textarea class="form-control" id="review" name="review" rows="5" placeholder="Enter your review..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-warning w-100">Transmit Review</button>
+            </form>
+        </div>
+    </section>
+</div>
+<div class="modal fade" id="transmissionModal" tabindex="-1" aria-labelledby="transmissionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <div class="ufp-badge d-flex justify-content-center mb-3">
+                    <img src="images/UFP.jpg" alt="United Federation of Planets logo">
+                </div>
+                <h2 class="modal-title status-line mb-2" id="transmissionModalLabel">Outgoing transmission</h2>
+                <p id="status-detail" class="mb-0"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3 p-3 mt-3">
+        <h2 class="fs-6 text-uppercase mb-0">ST:TNG reference</h2>
+        <a href="https://en.wikipedia.org/wiki/Star_Trek:_The_Next_Generation">Read more about Star Trek: The Next Generation on Wikipedia</a>
+</footer> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
