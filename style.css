@@ -1,26 +1,47 @@
+/* CSS units used in this file IMPORTANT as I had to look this up working through tutorials etc and trying to understand how to use. 
+   px   = pixels. A fixed size that ignores the user's text-size setting. Used for borders, small gaps and
+          shapes where an exact size matters (e.g. 6px radius, 3px border).
+   rem  = a multiple of the page's base font size (normally 16px), so 1rem = 16px and 0.75rem = 12px.
+          It grows if the user increases their browser's text size, so it suits padding and text.
+   em   = a multiple of the CURRENT element's font size. Used for letter-spacing (0.06em = 6% of a
+          letter's width) so the spacing scales with whatever size the text is.
+   vw   = 1% of the screen width, so 4.5vw is 4.5% of the width. Scales with the window but ignores
+          the user's text-size setting, so it is always wrapped in clamp() with a minimum and maximum.
+   %    = a share of the parent's size (e.g. width: 55%).
+   fr   = one share of the free space in a grid (1fr 1fr = two equal columns).
+   vh/dvh = 1% of the screen height (dvh adjusts for phone address bars).
+   ch   = about the width of one "0" character, so 60ch is roughly a 60-character line of text.
+   s    = seconds, used for animation and transition times.
+   Unitless numbers (e.g. line-height: 1.4, font-weight: 900) are multipliers or codes, not lengths. */
+
+/* :root makes the variables global, and var(--name) uses them. */
 :root {
     --lcars-black: #000000;
     --lcars-orange: #e63d00;
     --lcars-peach: #ff8833;
     --lcars-lavender: #cc6666;
-    --lcars-blue: #2266ff;
-    --lcars-alert: #da2537;
+    --lcars-blue: #3d78ff;      /* lightened from #2266ff: black text now 5.3:1 (was 4.4:1) */
+    --lcars-alert: #e8394a;     /* lightened from #da2537: black text now 5.1:1 (was 4.3:1) */
     --lcars-font: "Helvetica Ultra Compressed", sans-serif;
+    --radius: 6px;
+    --field-padding: 0.75rem;
 }
 
+/* border-box counts padding and borders inside an element's width, so width: 100% fields don't overflow */
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    padding: clamp(12px, 4vw, 24px);
+    padding: clamp(12px, 4vw, 24px); /* clamp(min, preferred, max): 4% of the screen width, never below 12px or above 24px */
     background: var(--lcars-black);
     color: var(--lcars-peach);
     font-family: var(--lcars-font);
     letter-spacing: 0.02em;
 }
 
+/* Peach LCARS header: a flex column centres the heading and text; the rounded right end is the LCARS look */
 header {
     display: flex;
     flex-direction: column;
@@ -44,9 +65,10 @@ header {
 
 .container {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* columns drop onto a new line when there isn't room */
     gap: 12px;
 }
+
 .top {
     display: flex;
     flex-wrap: wrap;
@@ -55,7 +77,7 @@ header {
 }
 
 .console-btn {
-    flex: 1 1 120px;
+    flex: 1 1 120px; /* grow, shrink, start at 120px: buttons share the row and wrap when narrower than that */
     padding: 14px 12px;
     border: none;
     border-radius: 999px;
@@ -68,7 +90,7 @@ header {
     transition: filter 0.15s ease, transform 0.1s ease;
 }
 
-.console-btn.active {
+.console-btn.active { /* the 'active' class is added by my_jquery_functions.js when a button is clicked */
     outline: 3px solid var(--lcars-alert);
     outline-offset: 2px;
 }
@@ -77,7 +99,8 @@ header {
     filter: brightness(1.2);
 }
 
-/* Button and barStyles */
+/*----------- Button and bar styles -----------*/
+/* One class per colour so the same colour can be reused on buttons and crew bars */
 .btn-eng {
     background: var(--lcars-orange);
 }
@@ -88,15 +111,10 @@ header {
     background: var(--lcars-peach);
 }
 
-.bar-orange {
-    background: var(--lcars-orange);
-}
 .bar-peach {
     background: var(--lcars-peach);
 }
-.bar-lavender {
-    background: var(--lcars-lavender);
-}
+
 .bar-blue {
     background: var(--lcars-blue);
 }
@@ -104,7 +122,8 @@ header {
     background: var(--lcars-alert);
 }
 
-/* ============================================= */
+/*----------- Page columns -----------*/
+/* .side is the crew list; .main and .rside hold the two pictures; .icon-grid sits between them */
 
 .side {
     flex: 0 1 260px;
@@ -126,31 +145,33 @@ header {
     width: 100%;       
 }
 
-/*----------- System Readout -----------*/
+/*----------- Flickering lights panel (.icon-grid) -----------*/
+/* Grid because the panel is two-directional: a narrow bar, then block + label pairs in rows */
 
 .icon-grid {
     flex: 0 1 150px;
     display: grid;
-    grid-template-columns: 28px 1fr 1fr;
+    grid-template-columns: 28px 1fr 1fr; /* column 1 is a fixed 28px bar; columns 2 and 3 share the rest equally */
     grid-auto-rows: minmax(40px, auto);
     gap: 6px;
     padding: 12px 0;
 }
 
-.icon-grid::before {
+.icon-grid::before { /* a pseudo-element: draws the peach bar down the left without extra HTML */
     content: "";
     grid-column: 1;
     grid-row: 1 / 10;
-    background: var(--lcars-peach) 25% 100%
+    background: var(--lcars-peach) 25% 100%;
 }
 
 .icon-cell {
     aspect-ratio: 1;
-    place-items: start center;
     padding-top: 3px;
     border-radius: 0 60px 60px 0;
-    background: var(--c);
+    background: var(--c); /* --c, --d and --t are set per light in index.html (style="--c: ...") */
     animation: led-flicker 2.8s ease-in-out infinite;
+    animation-delay: var(--d, 0s); /* the value after the comma is the fallback if --d isn't set */
+    animation-duration: var(--t, 2.8s); /* a different delay and speed per light stops them flashing in sync */
     color: var(--lcars-black);
     font-size: 0.55rem;
     font-weight: 900;
@@ -161,73 +182,16 @@ header {
     display: block;
     background: var(--c);
     animation: led-flicker 2.8s ease-in-out infinite;
+    animation-delay: var(--d, 0s);
+    animation-duration: var(--t, 2.8s);
     grid-column: 2;
 }
 
 .icon-cell::before {
-    content: attr(data-label);
+    content: attr(data-label); /* shows the text from each cell's data-label attribute */
 }
 
-.icon-grid .icon-cell:nth-child(2) { animation-delay: 0.1s; animation-duration: 2.3s; }
-.icon-grid .icon-cell:nth-child(4) { animation-delay: 1.4s; animation-duration: 3.1s; }
-.icon-grid .icon-cell:nth-child(6) { animation-delay: 0.6s; animation-duration: 2.7s; }
-.icon-grid .icon-cell:nth-child(8) { animation-delay: 2.0s; animation-duration: 3.6s; }
-.icon-grid .icon-cell:nth-child(10) { animation-delay: 0.3s; animation-duration: 2.9s; }
-.icon-grid .icon-cell:nth-child(12) { animation-delay: 1.8s; animation-duration: 2.4s; }
-.icon-grid .icon-cell:nth-child(14) { animation-delay: 0.9s; animation-duration: 3.3s; }
-.icon-grid .icon-cell:nth-child(16) { animation-delay: 2.4s; animation-duration: 2.6s; }
-.icon-grid .icon-cell:nth-child(18) { animation-delay: 1.1s; animation-duration: 3.0s; }
-
-.icon-grid .icon-cell-block:nth-child(1) { animation-delay: 0.2s; animation-duration: 2.4s; }
-.icon-grid .icon-cell-block:nth-child(3) { animation-delay: 1.5s; animation-duration: 3.2s; }
-.icon-grid .icon-cell-block:nth-child(5) { animation-delay: 0.7s; animation-duration: 2.8s; }
-.icon-grid .icon-cell-block:nth-child(7) { animation-delay: 2.1s; animation-duration: 3.7s; }
-.icon-grid .icon-cell-block:nth-child(9) { animation-delay: 0.4s; animation-duration: 3.0s; }
-.icon-grid .icon-cell-block:nth-child(11) { animation-delay: 1.9s; animation-duration: 2.5s; }
-.icon-grid .icon-cell-block:nth-child(13) { animation-delay: 1.0s; animation-duration: 3.4s; }
-.icon-grid .icon-cell-block:nth-child(15) { animation-delay: 2.5s; animation-duration: 2.7s; }
-.icon-grid .icon-cell-block:nth-child(17) { animation-delay: 1.2s; animation-duration: 3.1s; }
-
-@media screen and (max-width: 700px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .side,
-    .main,
-    .icon-grid {
-        flex: 1 1 auto;
-        width: 100%;
-        max-width: none;
-    }
-
-    .icon-grid {
-        grid-template-columns: 28px repeat(2, minmax(0, 1fr));
-        padding: 10px 0;
-    }
-
-    .icon-cell {
-        aspect-ratio: auto;
-        min-height: 40px;
-    }
-
-    header {
-        border-radius: 0 40px 40px 0;
-        padding: 14px 24px 14px 16px;
-    }
-
-    footer {
-        flex-direction: column;
-        align-items: flex-start;
-        border-radius: 40px 0 0 40px;
-    }
-
-    .uniform,
-    nav ul li summary {
-        padding: 12px 18px; 
-    }
-}
-
+/* max-width + height:auto keep every image inside its column and in proportion on small screens */
 img {
     display: block;
     margin: 0;
@@ -237,6 +201,7 @@ img {
     height: auto;
 }
 
+/* Crew list: removes the bullets and stacks the items */
 nav ul {
     list-style: none;
     margin: 0;
@@ -260,6 +225,7 @@ nav ul li summary:hover {
     filter: brightness(1.2);
 }
 
+/* The text that opens under a crew name when its <details> is expanded */
 nav ul li details p {
     background: var(--lcars-black);
     color: var(--lcars-peach);
@@ -268,18 +234,8 @@ nav ul li details p {
     border-radius: 0 0 16px 16px;
 }
 
-/*----------- Uniform Styles -----------*/
-
-.uniform {
-    margin: 8px 12px;
-    padding: 10px 18px;
-    border-radius: 999px;
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-}
-
 /*----------- System readout (sidebar) -----------*/
+/* Decorative moving bars (hidden from screen readers with aria-hidden in the HTML) */
 
 .readout {
     display: flex;
@@ -309,22 +265,23 @@ nav ul li details p {
     flex: 1;
     height: 14px;
     border-radius: 999px;
-    overflow: hidden;
+    overflow: hidden; /* clips the coloured fill to the rounded bar */
     background: var(--lcars-black);
 }
 
-.readout-fill {
+.readout-fill { /* animating the width makes the bar look like it is reading a changing value */
     display: flex;
     height: 100%;
     width: 55%;
     animation: readout-pulse 4s ease-in-out infinite;
 }
 
-.readout-fill .seg {
+.readout-fill .seg { /* flex-grow set in the HTML gives each coloured segment its share of the bar */
     background: var(--c);
     flex-grow: 1;
 }
 
+/* nth-child(1) to (4) = first to fourth row, so each bar and dot moves at its own speed */
 .readout-row:nth-child(1) .readout-fill {
     animation-duration: 3.6s;
     animation-delay: 0s;
@@ -386,37 +343,39 @@ nav ul li details p {
     animation-duration: 2.5s;
 }
 
+/* Opacity dips briefly around the middle of each cycle, then returns: a flicker, not a constant flash */
 @keyframes led-flicker {
     0%, 45%   { opacity: 1; }
     50%       { opacity: 0.12; }
     55%, 100% { opacity: 1; }
 }
 
-/* Division scroller section */
+/*----------- Division Scroller -----------*/
+/* A fixed-height box where each division fills the whole box and the user scrolls vertically between them */
 
 .division-frame {
     position: relative;
-    height: min(70dvh, 420px);
+    height: min(70dvh, 420px); /* 70% of the visible screen height, but never taller than 420px */
     margin: 12px 0;
     border: 3px solid var(--lcars-peach);
     border-radius: 12px;
     background: var(--lcars-black);
     overflow: hidden;
-    contain: paint; 
+    contain: paint; /* keeps anything drawn inside (including the fixed-position blink effect below) clipped to this box */
 }
 
 .division-scroller {
     height: 100%;
     overflow-y: auto;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y mandatory; /* vertical scrolling always settles exactly on a section */
     overscroll-behavior: auto;    
 }
 
 .division-section {
     height: 100%;
     scroll-snap-align: start;
-    scroll-snap-stop: always;
-    view-timeline: --section;
+    scroll-snap-stop: always; /* can't fly past a section in one swipe */
+    view-timeline: --section; /* names a timeline that measures how far this section has scrolled into view */
 }
 
 .section-command    { --bg: var(--lcars-alert); }
@@ -446,7 +405,7 @@ nav ul li details p {
     font-size: clamp(1rem, 3vw, 1.3rem);
 }
 
-.pips {
+.pips { /* the dots on the right; position: absolute lets them sit on top of the scroller. jQuery sets the active one */
     position: absolute;
     top: 50%;
     right: 12px;
@@ -467,6 +426,10 @@ nav ul li details p {
     background: var(--lcars-black);
 }
 
+/* Scroll-linked blink effect. @supports skips it in browsers that can't do it (the page still works),
+   and the reduced-motion check skips it for anyone who has asked their device for less movement.
+   Each section's content is pinned to the frame (position: fixed, clipped by contain: paint above)
+   and fades in and out as scrolling moves its section through the named timeline. */
 @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
         .division-content {
@@ -486,6 +449,7 @@ nav ul li details p {
 }
 
 /*----------- Footer -----------*/
+/* On narrow screens the media query at the bottom of this file stacks it */
 
 footer {
     display: flex;
@@ -507,7 +471,7 @@ footer {
 /*----------- Form Styles -----------*/
 
 .mission-form {
-    position: relative;
+    position: relative; /* makes this box the reference point for the absolutely positioned confirmation panel */
     background: var(--lcars-black);
     padding: 20px;
     border: 3px solid var(--lcars-peach);
@@ -519,7 +483,7 @@ footer {
     transition: opacity 0.2s ease;
 }
 
-.mission-form.is-locked .form-layer {
+.mission-form.is-locked .form-layer { /* 'is-locked' is added by jQuery when the form is sent: fades the form back */
     opacity: 0.2;
     filter: blur(1px);
     pointer-events: none;
@@ -545,26 +509,28 @@ footer {
 .mission-form input,
 .mission-form select,
 .mission-form textarea,
-.mission-form button {
+.mission-form button,
+.log-select {
     width: 100%;
-    padding: 0.75rem;
+    padding: var(--field-padding);
     border: 1px solid var(--lcars-peach);
-    border-radius: 6px;
+    border-radius: var(--radius);
     background-color: var(--lcars-black);
-    color: var(--lcars-peach);   
+    color: var(--lcars-peach);
     font: inherit;
 }
 
 .mission-form input:focus-visible,
 .mission-form select:focus-visible,
-.mission-form textarea:focus-visible {
-    outline: 2px solid var(--lcars-blue);
+.mission-form textarea:focus-visible,
+.log-select:focus-visible {
+    outline: 2px solid var(--lcars-blue); /* :focus-visible shows this ring for keyboard users, not on every mouse click */
     outline-offset: 2px;
 }
 
 .mission-form textarea {
     min-height: 120px;
-    resize: vertical;
+    resize: vertical; /* users can make it taller but not wider, which would break the layout */
 }
 
 .mission-form button {
@@ -584,8 +550,8 @@ footer {
 /*----------- Transmission Status -----------*/
 
 .transmission-status {
-    position: absolute;
-    inset: 20px;
+    position: absolute; /* sits on top of the form... */
+    inset: 20px; /* ...20px in from every edge of .mission-form */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -595,7 +561,7 @@ footer {
     padding: 20px;
     background: var(--lcars-black);
     font-family: var(--lcars-font);
-    opacity: 0;
+    opacity: 0; /* invisible and unclickable until the form is locked */
     pointer-events: none;
     transition: opacity 0.2s ease;
     text-align: center;
@@ -607,11 +573,8 @@ footer {
 }
 
 .ufp-badge {
-    width: auto;
-    height: auto;
     display: grid;
-    place-items: center; 
-    position: relative;
+    place-items: center;
     background: var(--lcars-black);
 }
 
@@ -623,8 +586,12 @@ footer {
     text-transform: uppercase;
     text-align: center;
     font-size: clamp(1.3rem, 7vw, 2.5rem);
-    animation: status-blink 1.4s steps(1) infinite;
+    animation: status-blink 1.4s steps(1) infinite; /* steps(1) jumps between values instead of fading, like a terminal cursor */
 }
+.status-detail span { /* each line (TO / FROM / CREW MEMBER) is a <span> made by jQuery; block puts one per line */
+    display: block;
+}
+
 .status-detail {
     margin: 0 0 16px;
     color: var(--lcars-blue);
@@ -636,7 +603,7 @@ footer {
     width: auto;
     padding: 0.6rem 1.2rem;
     border: 1px solid var(--lcars-peach);
-    border-radius: 6px;
+    border-radius: var(--radius);
     background: var(--lcars-peach);
     color: var(--lcars-black);
     font: inherit;
@@ -657,13 +624,20 @@ footer {
     100% { opacity: 1; }
 }
 
-/* Season Episode list styling */
+/*----------- Season Episode List -----------*/
+
+.log-label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
 .episode-list {
     list-style: none;
     margin: 12px 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* as many 260px+ columns as fit, sharing leftover space: no media query needed */
     gap: 8px;
 }
 
@@ -677,12 +651,52 @@ footer {
     font-size: 0.85rem;
 }
 
-.log-select {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--lcars-peach);
-    border-radius: 6px;
-    background-color: var(--lcars-black);
-    color: var(--lcars-peach);   
-    font: inherit;
+/*----------- Responsive layout (kept last so it overrides the rules above) -----------*/
+
+@media screen and (max-width: 700px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .side,
+    .main,
+    .icon-grid {
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: none;
+    }
+
+    .icon-grid {
+        grid-template-columns: 28px repeat(2, minmax(0, 1fr));
+        padding: 10px 0;
+    }
+
+    .icon-cell {
+        aspect-ratio: auto;
+        min-height: 40px;
+    }
+
+    header {
+        border-radius: 0 40px 40px 0;
+        padding: 14px 24px 14px 16px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 40px 0 0 40px;
+    }
+}
+
+/*----------- Reduced motion -----------*/
+/* Stops the looping animations for people who have asked their device for less movement (WCAG 2.2.2) */
+
+@media (prefers-reduced-motion: reduce) {
+    .icon-cell,
+    .icon-cell-block,
+    .led-dot,
+    .readout-fill,
+    .status-line {
+        animation: none;
+    }
 }
