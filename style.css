@@ -432,9 +432,7 @@ nav ul li details p {
 }
 
 /* Scroll-linked blink effect. @supports skips it in browsers that can't do it (the page still works),
-   and the reduced-motion check skips it for anyone who has asked their device for less movement.
-   Each section's content is pinned to the frame (position: fixed, clipped by contain: paint above)
-   and fades in and out as scrolling moves its section through the named timeline. */
+   and the reduced-motion check skips it for anyone who has asked their device for less movement. */
 @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
         .division-content {
