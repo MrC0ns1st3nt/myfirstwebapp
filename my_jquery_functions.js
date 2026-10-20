@@ -1,5 +1,3 @@
-// $('selector') finds elements on the page the same way CSS does (#id, .class).
-// The $ in the variable names is only a habit to show they hold jQuery objects.
 const $form = $('#mission-form');
 const $formLayer = $('.form-layer');
 const $status = $('#transmission-status');
@@ -18,8 +16,8 @@ const $seasonSelect = $('#season-select');
 // .on('click', ...) runs the function each time a button is clicked.
 // Inside it, $(this) means "the button that was clicked".
 $consoleButtons.on('click', function () {
-  $consoleButtons.removeClass('active').attr('aria-pressed', 'false'); // reset all three first
-  $(this).addClass('active').attr('aria-pressed', 'true');             // then mark the clicked one
+  $consoleButtons.removeClass('active').attr('aria-pressed', 'false'); 
+  $(this).addClass('active').attr('aria-pressed', 'true');             
 });
 
 
@@ -43,7 +41,6 @@ function showEpisodeMessage(text) {
 function loadEpisodes(seasonUid) {
   showEpisodeMessage('loading transmissions...');
   // $.get sends the request in the background so the page doesn't freeze while waiting.
-  // The function inside runs only when STAPI replies successfully.
   $.get('https://stapi.co/api/v1/rest/season?uid=' + seasonUid, function (data) {
     // STAPI does not return episodes in order. Sorting with a comparator (a, b) => a - b
     // compares them as numbers; a plain .sort() would compare as text and put 10 before 2.
