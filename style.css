@@ -1,17 +1,22 @@
 /* CSS units used in this file IMPORTANT as I had to look this up working through tutorials etc and trying to understand how to use. 
+information gathered from https://www.w3schools.com/css/css_units.asp
+Absolute Units:
    px   = pixels. A fixed size that ignores the user's text-size setting. Used for borders, small gaps and
-          shapes where an exact size matters (e.g. 6px radius, 3px border).
+          shapes where an exact size matters. W3Schools recommends not using for websites
+
+Relative Unit:
    rem  = a multiple of the page's base font size (normally 16px), so 1rem = 16px and 0.75rem = 12px.
           It grows if the user increases their browser's text size, so it suits padding and text.
    em   = a multiple of the CURRENT element's font size. Used for letter-spacing (0.06em = 6% of a
           letter's width) so the spacing scales with whatever size the text is.
    vw   = 1% of the screen width, so 4.5vw is 4.5% of the width. Scales with the window but ignores
-          the user's text-size setting, so it is always wrapped in clamp() with a minimum and maximum.
+          the user's text-size setting.
    %    = a share of the parent's size (e.g. width: 55%).
    fr   = one share of the free space in a grid (1fr 1fr = two equal columns).
    vh/dvh = 1% of the screen height (dvh adjusts for phone address bars).
    ch   = about the width of one "0" character, so 60ch is roughly a 60-character line of text.
    s    = seconds, used for animation and transition times.
+
    Unitless numbers (e.g. line-height: 1.4, font-weight: 900) are multipliers or codes, not lengths. */
 
 /* :root makes the variables global, and var(--name) uses them. */
